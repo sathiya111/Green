@@ -1,0 +1,49 @@
+package Practice;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.seleniumhq.jetty9.server.LowResourceMonitor.MainThreadPoolLowResourceCheck;
+
+public class BaseClass {
+
+	public static WebDriver driver;
+
+	public static WebDriver getBrowserLaunch(String browserName) throws Exception {
+		try {
+			if (browserName.equalsIgnoreCase("chrome")) {
+				System.setProperty("webdriver.chrome.driver",
+						System.getProperty("user.dir") + "\\Driver\\chromedriver.exe");
+				driver = new ChromeDriver();
+			} else if (browserName.equalsIgnoreCase("Firefox")) {
+				System.setProperty("webdriver.gecko.driver",
+						System.getProperty("user.dir") + "\\Driver\\geckodriver.exe");
+				driver = new FirefoxDriver();
+
+			} else if (browserName.equalsIgnoreCase("ie")) {
+				System.setProperty("webdriver.ie.driver",
+						System.getProperty("user.dir") + "\\Driver\\IEDriverServer.exe");
+				driver = new InternetExplorerDriver();
+				
+
+			} else {
+				throw new Exception("Invalid browsername");
+			}
+			driver.manage().window().maximize();
+			return driver;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new Exception();
+		}
+	
+	}
+	public static void main(String[] args) throws Throwable {
+		getBrowserLaunch("ie");
+		driver.get("https://www.google.com");
+		driver.quit();
+		
+	}
+
+}

@@ -1,0 +1,114 @@
+        SELENIUM SYNTAX:
+
+1.BROWSER LAUNCH:
+
+System.setproperty("webdriver.chrome.driver","userdirectory + driver.ixe");
+Webdriver driver = new chromeDriver();
+
+2.DRIVER METHODS:
+
+driver.get();
+driver.manage.window.maximize();
+driver.navigate.to();
+driver.navigate.back();
+driver.navigate.forward();
+driver.navigate.refresh();
+driver.close();
+driver.quit();
+
+3.LOCATORS:
+
+id
+name
+classname
+tagname
+xpath
+css selector
+linktext
+partial linktext
+
+4.XPATH:
+
+*  //tagname[@attributename = 'attribute value']
+*  //tagname[contains(attributename,'attributevalue')]
+*  //tagname[text()='text']
+*  //tagname[contains(text(),'text')]
+*  (//tagname[@attributename = 'attributevalue'])[2]   ----   based on Index
+
+5. SCROLLUP AND SCROLLDOWN:[TRUE-down & FALSE-up]
+
+   JavascriptExecutor js = (javascriptExecutor) driver;
+
+USING WEBELEMENT:
+-   js.Executescript =("arguments[0],scrollIntoView();")
+
+USING PIXELS:
+- js.Executescript = ("window.scrollBy(x,y)");
+
+MOVE TO TOP OR BOTTOM OF PAGE:
+- js.Executescript = ("window.scrollTo(0,document.body.scrollHeight)");
+- js.Executescript = ("window.scrollTo(0,-document.body.scrollHeight)");
+
+6.ALERT:
+
+Alert al = driver.switchto.alert();          
+alert.accept();     ------------ SIMPLE ALERT
+alert.dismiss();    ------------ CONFIRMATION ALERT
+alert.sendkeys();   ------------ PROMPT ALERT
+
+7.FRAME:
+
+driver.switchto.frame();
+
+8.SCREENSHOT:
+
+TakeScreenshot sc = (TakeScreenshot)driver;
+File Sourcefile = sc.getScreenshotAs(OutputType.File);
+File Destfile = new File("folderpath + name for file + file type);
+FileUtils.CopyFile(Sourcefile.copyfile);
+
+9.ACTIONS: [TO PERFORM KEYBOARD AND MOUSE ACTIONS]
+
+Actions ac = new Actions(driver);
+ac.contextclick.build().perform(); -------Rightclick
+ac.doubleclick.build().perform(); -------doubleclick
+ac.movetoElement.build().perform(); -------MouseHover
+ac.click&hold
+
+10.SELECT: [DROPDOWN]
+ select s = new select();
+ s.select by index[]
+ s.selectbyValue("value");
+ s.selectbyVisibleText("text");
+
+11.ROBOT: [	]
+
+ Robot r = new Robot();
+r.keypress(keyEvents.VK_down);
+r.keyRelease(keyEvents.VK_down);
+r.keypress(keyEvents.VK_Enter);
+
+12.WINDOWS HANDLING:
+ driver.getWindowHandle   ----- to get child window
+ driver.getWindowHandles  ----- to get parent window
+ driver.switchto.Window();
+
+13.WAIT:
+
+Implicit --- driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
+             
+Explicit --- 
+             WebdriverWait - Class
+	     WebDriverWait wb = new WebDriverWait(driver, 50);
+	     wb.until(ExpectedConditions.attributeContains(By.xpath(""), "aria-label", "Mobile Number"));
+	     wb.until(ExpectedConditions.numberOfElementsToBe(By.xpath(""), 5));
+	     wb.until(ExpectedConditions.visibilityOf(emailcreate));
+
+Fluient ---  [Dynamic changing]
+             wb.pooling Every(5,Timeunit.Seconds);
+	     wb.Ignoring(No such Exception.Class);
+
+
+
+
+
